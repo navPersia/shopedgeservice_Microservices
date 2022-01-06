@@ -3,12 +3,16 @@ package com.example.shopedgeservice.controller;
 import com.example.shopedgeservice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -20,9 +24,8 @@ public class UserController {
     private String userServiceBaseUrl;
 
     @PostMapping("/users/newuser")
-    public User newUser(){
-        User user = restTemplate.postForObject("http://" + userServiceBaseUrl +"/users/newuser", new User("Test", "test1", "navid7373", Boolean.TRUE,Boolean.FALSE,Boolean.FALSE),User.class);
-
+    public User newUser(@RequestBody User newuser){
+        User user = restTemplate.postForObject("http://" + userServiceBaseUrl +"/users/newuser", newuser,User.class);
         return user;
     }
 
@@ -39,8 +42,23 @@ public class UserController {
         return retrievedUser;
     }
 
-    @GetMapping("/users/user/{id}")
-    public User getUser(@PathVariable String id){
-        return restTemplate.getForObject("http://" + userServiceBaseUrl +"/users/user/"+id, User.class);
+    @GetMapping("/users/user/{username}")
+    public User getUser(@PathVariable String username){
+        return restTemplate.getForObject("http://" + userServiceBaseUrl +"/users/user/"+username, User.class);
     }
+    @GetMapping("/users")
+    public List<User> getUsers(){
+        return restTemplate.exchange("http://" + userServiceBaseUrl +"/users", HttpMethod.GET, null, new ParameterizedTypeReference<List<User>>(){}).getBody();
+    }
+
+    @PostMapping("/users/login")
+    public String loginUser(@RequestBody User user){
+        User retrivedUser = restTemplate.postForObject("http://" + userServiceBaseUrl +"/users/login", user, User.class);
+        if (retrivedUser!=null){
+            return "access";
+        }else {
+            return "can't access";
+        }
+    }
+
 }

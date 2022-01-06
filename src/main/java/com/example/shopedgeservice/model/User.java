@@ -1,5 +1,6 @@
 package com.example.shopedgeservice.model;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class User {
@@ -10,11 +11,12 @@ public class User {
     private Boolean active;
     private Boolean admin;
     private Boolean seller;
-    private Date createdAt;
-    private Date modifiedAt;
+    private LocalDateTime createdAt;
+    private String modifiedAt;
 
     public User() {
     }
+
 
     public User(String name, String username, String passwordHash, Boolean active, Boolean admin, Boolean seller) {
         this.name = name;
@@ -81,19 +83,16 @@ public class User {
         this.seller = seller;
     }
 
-    public Date getCreatedAt() {
+    public LocalDateTime getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
 
-    public Date getModifiedAt() {
+    public String getModifiedAt() {
         return modifiedAt;
     }
 
-    public void setModifiedAt(Date modifiedAt) {
-        this.modifiedAt = modifiedAt;
-    }
 }
