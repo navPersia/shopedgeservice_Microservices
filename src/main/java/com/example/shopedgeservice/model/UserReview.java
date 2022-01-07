@@ -1,21 +1,21 @@
 package com.example.shopedgeservice.model;
 
 public class UserReview {
-    private int userId;
+    private String userId;
     private String comment;
     private int score;
 
-    public UserReview(int userId, String comment, int score) {
+    public UserReview(String userId, String comment, int score) {
         this.userId = userId;
         this.comment = comment;
         this.score = score;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

@@ -29,13 +29,13 @@ public class FilledProductReviewController {
     @Value("${userservice.baseurl}")
     private String userServiceBaseUrl;
     @GetMapping("/productReviews/user/{userId}/product/{productId}")
-    public FilledProductReview getReviewByUserIdAndProductId(@PathVariable int userId, @PathVariable int productId){
+    public FilledProductReview getReviewByUserIdAndProductId(@PathVariable String userId, @PathVariable String productId){
         Product product = restTemplate.getForObject("http://"+ productServiceBaseUrl+ "/products/product/{id}", Product.class, productId);
         Review review = restTemplate.getForObject("http://"+ reviewServiceBaseUrl+ "/reviews/user/"+userId+"/product/"+productId, Review.class);
         return new FilledProductReview(product, review);
     }
     @GetMapping("/productReviews/product/{productId}")
-    public FilledProductReview getReviewsByProductId(@PathVariable int productId){
+    public FilledProductReview getReviewsByProductId(@PathVariable String productId){
         Product product = restTemplate.getForObject("http://"+ productServiceBaseUrl+ "/products/product/{id}", Product.class, productId);
         ResponseEntity<List<Review>> responseEntityReviews = restTemplate.exchange("http://" + reviewServiceBaseUrl + "/reviews/product/{productId}", HttpMethod.GET, null, new ParameterizedTypeReference<List<Review>>() {
 
@@ -43,7 +43,7 @@ public class FilledProductReviewController {
                 return new FilledProductReview(product, responseEntityReviews.getBody());
     }
     @GetMapping("/productReviews/user/{userId}")
-    public List<FilledProductReview> getReviewsByUserId(@PathVariable int userId){
+    public List<FilledProductReview> getReviewsByUserId(@PathVariable String userId){
         List<FilledProductReview> retValue = new ArrayList<>();
         ResponseEntity<List<Review>> responseEntityReviews = restTemplate.exchange("http://" + reviewServiceBaseUrl + "/reviews/user/{userId}", HttpMethod.GET, null, new ParameterizedTypeReference<List<Review>>() {
 
@@ -57,13 +57,13 @@ public class FilledProductReviewController {
         return retValue;
     }
     @PostMapping("/productReviews")
-    public FilledProductReview addProductReview(@RequestParam int userId, @RequestParam String productId, @RequestParam String comment, @RequestParam Integer score){
+    public FilledProductReview addProductReview(@RequestParam String userId, @RequestParam String productId, @RequestParam String comment, @RequestParam Integer score){
         Review review = restTemplate.postForObject("http://"+reviewServiceBaseUrl+"/reviews", new Review(userId, productId, comment, score), Review.class);
         Product product = restTemplate.getForObject("http://"+ productServiceBaseUrl+ "/products/product/{id}", Product.class, productId);
         return new FilledProductReview(product, review);
     }
     @PutMapping("/productReviews")
-    public FilledProductReview updateProductReview(@RequestParam int userId, @RequestParam String productId, @RequestParam String comment, @RequestParam Integer score){
+    public FilledProductReview updateProductReview(@RequestParam String userId, @RequestParam String productId, @RequestParam String comment, @RequestParam Integer score){
         Review review = restTemplate.getForObject("http://"+ reviewServiceBaseUrl+ "/reviews/user/"+userId+"/product/"+productId, Review.class);
         review.setScore(score);
         review.setComment(comment);

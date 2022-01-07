@@ -4,13 +4,13 @@ import java.util.Date;
 
 public class Review {
     private Integer id;
-    private Integer userId;
+    private String userId;
     private String productId;
     private String comment;
     private Integer score;
     private Date createdAt;
     private Date updatedAt;
-    public Review(Integer userId, String productId, String comment, Integer score) {
+    public Review(String userId, String productId, String comment, Integer score) {
         this.userId = userId;
         this.productId = productId;
         this.comment = comment;
@@ -25,11 +25,11 @@ public class Review {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
