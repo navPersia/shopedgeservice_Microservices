@@ -2,7 +2,7 @@
 
 <h2> Description: </h2>
 <p>
-We connect people to each other. Sellers can put their goods on the website and the buyers can find them then contact the seller. Buyer can leave a rating with comments about seller later.
+We connect people to each other. Sellers can put their goods on the website, the buyers can find them and then contact the seller. Buyers can leave a rating with comments about the seller later.
 </p>
 
 <h2>Diagram:<h2>
