@@ -8,7 +8,7 @@ We connect people to each other. Sellers can put their goods on the website and 
 <h2>Diagram:<h2>
 <img src="http://84.197.114.65/images/diagrammicroservices.jpg" alt="shop diagram micro services" width="500">
 
-<p>Link to userservic: <a href="https://github.com/navPersia/userservice_Microsermicroservicesvices">https://github.com/navPersia/userservice_Microservices</a></p>
+<p>Link to userservice: <a href="https://github.com/navPersia/userservice_Microsermicroservicesvices">https://github.com/navPersia/userservice_Microservices</a></p>
 <p>Link to productservice: <a href="https://github.com/navPersia/productservice_Microservices">https://github.com/navPersia/productservice_Microservices</a></p>
 <p>Link to reviewservice: <a href="https://github.com/Ferre-D/reviewservice-APT">https://github.com/Ferre-D/reviewservice-APT</a></p>
 
